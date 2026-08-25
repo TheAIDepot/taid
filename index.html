@@ -107,9 +107,116 @@
                 <li><i class="fas fa-times"></i> Marketing ROI is unpredictable and difficult to measure</li>
             </ul>
 
-            <div class="problem-image">
-                <img src="assets/isaac-macdonald-unsplash.jpg" alt="Frustrated business owner looking at lead reports">
-            </div>
+            <!-- START OF THE AI DEPOT FREE TOOL WIDGET -->
+<div id="ai-depot-widget-container" style="max-width: 650px; margin: 40px auto; padding: 30px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; border: 1px solid #e2e8f0; border-radius: 12px; background: #ffffff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03); color: #1a202c; line-height: 1.5;">
+    
+    <div style="text-align: center; margin-bottom: 25px;">
+        <h2 style="margin: 0 0 10px 0; font-size: 24px; font-weight: 700; color: #0f172a;">🤖 Free AI Action Plan & Prompt Builder</h2>
+        <p style="margin: 0; font-size: 15px; color: #475569;">See exactly how AI can optimize your specific workflow and get a custom copy-paste prompt instantly.</p>
+    </div>
+
+    <!-- Dropdown 1 -->
+    <div style="margin-bottom: 20px;">
+        <label for="taid-industry" style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: #334155;">1. Select Your Industry</label>
+        <select id="taid-industry" onchange="generateAiPlan()" style="width: 100%; padding: 12px; font-size: 15px; border: 1px solid #cbd5e1; border-radius: 8px; background-color: #f8fafc; color: #1e293b; cursor: pointer; outline: none; transition: border-color 0.2s;">
+            <option value="roofing">🏠 Roofing & Exterior Contracting</option>
+            <option value="foundation">🏗️ Foundation Repair & Waterproofing</option>
+            <option value="independent">💼 Independent Professional (Legal, Medical, Insurance)</option>
+            <option value="hvac">🛠️ General Home Services / HVAC / Plumbing</option>
+            <option value="other">🏢 Other B2B / Service-Based Business</option>
+        </select>
+    </div>
+
+    <!-- Dropdown 2 -->
+    <div style="margin-bottom: 25px;">
+        <label for="taid-bottleneck" style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: #334155;">2. What is your biggest business bottleneck?</label>
+        <select id="taid-bottleneck" onchange="generateAiPlan()" style="width: 100%; padding: 12px; font-size: 15px; border: 1px solid #cbd5e1; border-radius: 8px; background-color: #f8fafc; color: #1e293b; cursor: pointer; outline: none; transition: border-color 0.2s;">
+            <option value="chasing">⏳ Wasting hours chasing cold or unqualified web leads</option>
+            <option value="noshow">📉 High "no-show" rates for scheduled consultations</option>
+            <option value="marketing">❌ Spending money on marketing/ads that never convert</option>
+            <option value="afterhours">🌙 Missing out on leads that submit forms after business hours</option>
+            <option value="admin">📝 Sales team spending too much time on manual admin work</option>
+        </select>
+    </div>
+
+    <!-- Dynamic Output Area -->
+    <div id="taid-output" style="background: #f1f5f9; padding: 20px; border-radius: 8px; border-left: 4px solid #2563eb; margin-bottom: 25px;">
+        <h4 style="margin: 0 0 10px 0; font-size: 16px; font-weight: 700; color: #1e293b;">⚡ Your Tailored AI Action Plan:</h4>
+        <p id="taid-action-plan" style="margin: 0 0 20px 0; font-size: 14px; color: #475569;">Select your options above to see your plan.</p>
+        
+        <h4 style="margin: 0 0 10px 0; font-size: 16px; font-weight: 700; color: #1e293b;">📋 Your Custom Master Prompt:</h4>
+        <p style="margin: 0 0 8px 0; font-size: 12px; color: #64748b; font-style: italic;">Copy and paste this into ChatGPT or Claude to use it right now:</p>
+        
+        <div style="position: relative;">
+            <textarea id="taid-prompt-text" readonly style="width: 100%; height: 110px; padding: 12px; font-size: 13px; font-family: monospace; border: 1px solid #cbd5e1; border-radius: 6px; background: #ffffff; color: #334155; resize: none; box-sizing: border-box; outline: none;"></textarea>
+            <button onclick="copyTaidPrompt()" style="position: absolute; right: 10px; bottom: 12px; background: #2563eb; color: #ffffff; border: none; padding: 6px 12px; font-size: 12px; font-weight: 600; border-radius: 4px; cursor: pointer; transition: background 0.2s;">Copy</button>
+        </div>
+        <div id="copy-toast" style="display: none; text-align: right; font-size: 12px; color: #16a34a; margin-top: 4px; font-weight: 600;">✓ Prompt copied to clipboard!</div>
+    </div>
+
+    <!-- The Funnel Bridge / CTA -->
+    <div style="background: #eff6ff; border: 1px dashed #bfdbfe; padding: 20px; border-radius: 8px; text-align: center;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 700; color: #1e40af;">🤖 Ready to put this exact workflow on 100% autopilot?</h4>
+        <p style="margin: 0 0 15px 0; font-size: 14px; color: #1e3a8a;">Let us build out the backend integrations for you.</p>
+        <a href="https://calendly.com/contactaidepot/30min" style="display: inline-block; background: #2563eb; color: #ffffff; text-decoration: none; padding: 12px 24px; font-size: 15px; font-weight: 600; border-radius: 6px; transition: background 0.2s;">Book a 15-Min Strategy Call</a>
+    </div>
+</div>
+
+<!-- JavaScript Logic for the Tool -->
+<script>
+const taidData = {
+    roofing: {
+        chasing: {
+            plan: "Deploy an AI intake agent on your site that instantly messages new leads via SMS, qualifies their roof age/insurance status, and hands off ready buyers to your team.",
+            prompt: "Act as a stellar roofing intake specialist. Ask the user about their roof age, leaks, and insurance status. Keep responses under 2 sentences and focus on booking an inspection."
+        },
+        noshow: {
+            plan: "Set up automated interactive SMS reminders that ask prospects to text back confirming their project details, filtering out non-serious shoppers before your estimator leaves the office.",
+            prompt: "Draft a 3-step appointment confirmation sequence for a roofing estimate. Include a dynamic placeholder asking if they need a full replacement or an explicit patch repair."
+        },
+        marketing: {
+            plan: "Inject an instant 'Roofing ROI Estimator' widget onto your landing page to capture intent before users bounce, converting passive ad traffic into qualified form submissions.",
+            prompt: "Write a high-converting landing page script targeting homeowners needing immediate storm damage restoration. Focus heavily on a stress-free insurance process."
+        },
+        afterhours: {
+            plan: "Deploy a 24/7 autonomous booking assistant to instantly lock in roofing consultations for midnight form submissions, beating your competitors to the morning callback.",
+            prompt: "You are an after-hours booking assistant for a roofing company. Dynamically acknowledge that the office is closed but secure their slot for a morning roof inspection."
+        },
+        admin: {
+            plan: "Use AI voice transcription tools to summarize field measurements directly from the roof into job scopes and clean CRM updates without typing a word.",
+            prompt: "Convert this raw verbal site note into a structured roofing scope: '15 squares, architectural shingles, needs total deck replacement on north face, drip edge rusted.'"
+        }
+    },
+    foundation: {
+        chasing: {
+            plan: "Implement an upfront diagnostic AI chat that maps out wall cracks and bowing issues, routing critical structural emergency leads to your sales reps instantly.",
+            prompt: "Act as a foundation repair advisor. Ask the client if their cracks are horizontal, vertical, or stair-step. Explain the structural risks calmly while guiding them to book a visit."
+        },
+        noshow: {
+            plan: "Send an AI-generated 'What to expect during your foundation inspection' prep guide via text 24 hours prior, requiring a confirmation response to lock in the engineer's route.",
+            prompt: "Write a friendly, authoritative SMS reminder asking homeowners to ensure their basement perimeter walls are accessible for the foundation inspector's arrival tomorrow."
+        },
+        marketing: {
+            plan: "Create an interactive home settling assessment quiz that scores foundation risk levels, capturing high-intent leads from your local Google ads.",
+            prompt: "Design a 4-question diagnostic framework for homeowners to evaluate if a sticky door or drywall crack is a structural issue. Keep the tone expert and helpful."
+        },
+        afterhours: {
+            plan: "Run an overnight AI concierge to capture complex foundation leaks and basement floods precisely when homeowners discover them after a heavy rainfall.",
+            prompt: "You are a structural repair assistant answering messages at midnight. Reassure the user, gather details about active water intrusion, and schedule an early priority dispatch slot."
+        },
+        admin: {
+            plan: "Automatically pipe home inspection notes and engineering reports through an AI compiler to produce clean, formatted client proposals in under two minutes.",
+            prompt: "Analyze these inspector notes and draft an executive summary for a homeowner proposal: '3 inches drop in SE corner, push piers recommended, crawlspace encapsulation needed.'"
+        }
+    },
+    independent: {
+        chasing: {
+            plan: "Screen inbound inquiries with an AI intake form that filters cases based on your specific practice areas, budget requirements, and timeline.",
+            prompt: "Act as an expert intake coordinator. Politely ask the prospect to summarize their core request, timeframe, and whether they have worked with a professional on this issue before."
+        },
+        noshow: {
+            plan: "Require pre-consultation intake documents to be filled out via a conversational AI assistant, ensuring only deeply committed clients make it onto your calendar.",
+
 
             
         </div>
