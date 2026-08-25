@@ -52,8 +52,32 @@
             <h1>*                              *</h1>
             <h1>The 10X Appointment Generator</h1>
             <p class="subtitle">Stop Wasting Money on Leads That Go Nowhere</p>
+            
+            <!-- Calendly Widget CSS -->
+  <link rel="stylesheet" href="https://assets.calendly.com/assets/booking/css/booking-531dac03.css" />
 
-           
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    }
+
+    .calendly-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .calendly-inline-widget {
+      width: 100%;
+      max-width: 900px;
+      height: 90vh;
+      border: none;
+    }
   </style>
 </head>
 <body>
@@ -83,128 +107,8 @@
                 <li><i class="fas fa-times"></i> Marketing ROI is unpredictable and difficult to measure</li>
             </ul>
 
-            <!-- START OF THE AI DEPOT FREE TOOL WIDGET -->
-<div id="ai-depot-widget-container" style="max-width: 650px; margin: 40px auto; padding: 30px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; border: 1px solid #e2e8f0; border-radius: 12px; background: #ffffff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03); color: #1a202c; line-height: 1.5;">
-    
-    <div style="text-align: center; margin-bottom: 25px;">
-        <h2 style="margin: 0 0 10px 0; font-size: 24px; font-weight: 700; color: #0f172a;">🤖 Free AI Action Plan & Prompt Builder</h2>
-        <p style="margin: 0; font-size: 15px; color: #475569;">See exactly how AI can optimize your specific workflow and get a custom copy-paste prompt instantly.</p>
-    </div>
-
-    <!-- Dropdown 1 -->
-    <div style="margin-bottom: 20px;">
-        <label for="taid-industry" style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: #334155;">1. Select Your Industry</label>
-        <select id="taid-industry" onchange="generateAiPlan()" style="width: 100%; padding: 12px; font-size: 15px; border: 1px solid #cbd5e1; border-radius: 8px; background-color: #f8fafc; color: #1e293b; cursor: pointer; outline: none; transition: border-color 0.2s;">
-            <option value="roofing">🏠 Roofing & Exterior Contracting</option>
-            <option value="foundation">🏗️ Foundation Repair & Waterproofing</option>
-            <option value="independent">💼 Independent Professional (Legal, Medical, Insurance)</option>
-            <option value="hvac">🛠️ General Home Services / HVAC / Plumbing</option>
-            <option value="other">🏢 Other B2B / Service-Based Business</option>
-        </select>
-    </div>
-
-    <!-- Dropdown 2 -->
-    <div style="margin-bottom: 25px;">
-        <label for="taid-bottleneck" style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: #334155;">2. What is your biggest business bottleneck?</label>
-        <select id="taid-bottleneck" onchange="generateAiPlan()" style="width: 100%; padding: 12px; font-size: 15px; border: 1px solid #cbd5e1; border-radius: 8px; background-color: #f8fafc; color: #1e293b; cursor: pointer; outline: none; transition: border-color 0.2s;">
-            <option value="chasing">⏳ Wasting hours chasing cold or unqualified web leads</option>
-            <option value="noshow">📉 High "no-show" rates for scheduled consultations</option>
-            <option value="marketing">❌ Spending money on marketing/ads that never convert</option>
-            <option value="afterhours">🌙 Missing out on leads that submit forms after business hours</option>
-            <option value="admin">📝 Sales team spending too much time on manual admin work</option>
-        </select>
-    </div>
-
-    <!-- Dynamic Output Area -->
-    <div id="taid-output" style="background: #f1f5f9; padding: 20px; border-radius: 8px; border-left: 4px solid #2563eb; margin-bottom: 25px;">
-        <h4 style="margin: 0 0 10px 0; font-size: 16px; font-weight: 700; color: #1e293b;">⚡ Your Tailored AI Action Plan:</h4>
-        <p id="taid-action-plan" style="margin: 0 0 20px 0; font-size: 14px; color: #475569;">Select options above to see your plan.</p>
-        
-        <h4 style="margin: 0 0 10px 0; font-size: 16px; font-weight: 700; color: #1e293b;">📋 Your Custom Master Prompt:</h4>
-        <p style="margin: 0 0 8px 0; font-size: 12px; color: #64748b; font-style: italic;">Copy and paste this into ChatGPT or Claude to use it right now:</p>
-        
-        <div style="position: relative;">
-            <textarea id="taid-prompt-text" readonly style="width: 100%; height: 110px; padding: 12px; font-size: 13px; font-family: monospace; border: 1px solid #cbd5e1; border-radius: 6px; background: #ffffff; color: #334155; resize: none; box-sizing: border-box; outline: none;">Select options above to generate a master prompt.</textarea>
-            <button onclick="copyTaidPrompt()" style="position: absolute; right: 10px; bottom: 12px; background: #2563eb; color: #ffffff; border: none; padding: 6px 12px; font-size: 12px; font-weight: 600; border-radius: 4px; cursor: pointer; transition: background 0.2s;">Copy</button>
-        </div>
-        <div id="copy-toast" style="display: none; text-align: right; font-size: 12px; color: #16a34a; margin-top: 4px; font-weight: 600;">✓ Prompt copied to clipboard!</div>
-    </div>
-
-    <!-- The Funnel Bridge / CTA -->
-    <div style="background: #eff6ff; border: 1px dashed #bfdbfe; padding: 20px; border-radius: 8px; text-align: center;">
-        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 700; color: #1e40af;">🤖 Ready to put this exact workflow on 100% autopilot?</h4>
-        <p style="margin: 0 0 15px 0; font-size: 14px; color: #1e3a8a;">While copy-pasting prompts helps, our custom AI agents will text, qualify, and book these leads directly into your calendar 24/7/365 while you sleep.</p>
-        <a href="https://calendly.com/contactaidepot/30min" style="display: inline-block; background: #2563eb; color: #ffffff; text-decoration: none; padding: 12px 24px; font-size: 15px; font-weight: 700; border-radius: 6px; transition: background 0.2s; box-shadow: 0 2px 4px rgba(37,99,235,0.2);">See a Live Demo of Your AI Agent &rarr;</a>
-    </div>
-
-</div>
-
-<script>
-function generateAiPlan() {
-    const industryElement = document.getElementById('taid-industry');
-    const bottleneck = document.getElementById('taid-bottleneck').value;
-    const industryText = industryElement.options[industryElement.selectedIndex].text;
-    
-    const broadFixes = {
-        chasing: {
-            plan: "Your marketing for " + industryText + " is driving clicks, but your sales pipeline stalls playing phone tag. You need an automated text/email triage agent that engages new inbound leads within 180 seconds to filter out tire-kickers before your human team ever picks up the phone.",
-            prompt: "Act as an expert triage and intake coordinator specializing in the " + industryText + " space. Your job is to pre-qualify a new inbound lead who just filled out a form on our website. Ask exactly 3 questions, one at a time, to determine their specific problem, their immediate timeline, and if they are the primary decision maker. Keep your tone helpful, professional, and urgent. Do not give pricing. If they qualify, instruct them to pick a time on our calendar."
-        },
-        noshow: {
-            plan: "High-value service jobs in " + industryText + " require high-intent buyers, but prospects often back out due to friction or missing context. You need an AI booking assistant that handles upfront objections, adds value, and confirms real commitment prior to setting the appointment, ensuring an 80%+ show rate.",
-            prompt: "Act as a consultative booking assistant for a professional " + industryText + " firm. A prospect is hesitant to confirm their scheduled consultation. Write a 3-sentence, empathetic response that validates their time concern, explains that our streamlined consultations target their exact issues so they save money, and gently asks if morning or afternoon works better to lock in their slot."
-        },
-        marketing: {
-            plan: "Wasted ad spend happens when paid traffic hits a dead-end web form. For " + industryText + ", you need an AI conversation layer attached directly to your landing pages that immediately intercepts incoming lead information, handles upfront friction, and guarantees an appointment while interest is at its absolute peak.",
-            prompt: "Act as a conversion optimization assistant for a " + industryText + " marketing campaign. Analyze the incoming message from a paid ad lead who clicked 'Learn More'. Respond instantly with a highly engaging hook that references the specific ad offer, answers their immediate baseline objection about pricing transparently, and provides a direct calendar link."
-        },
-        afterhours: {
-            plan: "Service companies in " + industryText + " often lose thousands in revenue simply because a competitor answered the phone first at 8:00 PM. You need a 24/7 conversational AI agent that acts as your overnight intake desk, answering questions instantly, qualifying budgets, and scheduling appointments automatically while your team sleeps.",
-            prompt: "Act as an emergency, after-hours AI intake assistant for a top-tier " + industryText + " firm. A lead just submitted an urgent query at midnight. Acknowledge receipt within 30 seconds, match their urgency with professional empathy, ask them to outline the scope of their problem, and provide an instant link to lock in the first open consultation slot tomorrow morning."
-        },
-        admin: {
-            plan: "Your sales professionals are wasting hours on low-leverage paperwork instead of closing high-ticket deals. By implementing an AI agent that automatically extracts data from inbound forms, updates your CRM database system, and drafts initial follow-up proposals, you restore 10+ hours a week per salesperson back to closing active client files.",
-            prompt: "Act as an advanced operations automation assistant for a " + industryText + " business. Review the following raw inbound customer request notes. Extract the customer's name, primary contact method, core physical asset problem, and urgency level. Format this information clean into a structured JSON block ready to sync with our CRM backend, and output a personalized email draft to the client confirming our next steps."
-        }
-    };
-
-    if (broadFixes[bottleneck]) {
-        document.getElementById('taid-action-plan').innerText = broadFixes[bottleneck].plan;
-        document.getElementById('taid-prompt-text').value = broadFixes[bottleneck].prompt;
-    }
-}
-
-function copyTaidPrompt() {
-    const copyText = document.getElementById("taid-prompt-text");
-    copyText.select();
-    copyText.setSelectionRange(0, 99999);
-
-            
-            <!-- Calendly Widget CSS -->
-  <link rel="stylesheet" href="https://assets.calendly.com/assets/booking/css/booking-531dac03.css" />
-
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background-color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-    }
-
-    .calendly-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-
-    .calendly-inline-widget {
-      width: 100%;
-      max-width: 900px;
-      height: 90vh;
-      border: none;
-    }
+            <div class="problem-image">
+                <img src="assets/isaac-macdonald-unsplash.jpg" alt="Frustrated business owner looking at lead reports">
             </div>
 
             
