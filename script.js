@@ -214,9 +214,11 @@ function handleFormSubmit(e) {
 
 function validateForm(formValues) {
     let isValid = true;
-    const requiredFields = ['first-name', 'last-name', 'company-name', 'email', 'phone', 'challenges'];
     
-    // Check required fields
+    // FIXED: Only validate fields that are actually in your HTML Prompt Builder
+    const requiredFields = ['industry', 'bottleneck'];
+    
+    // Check required fields safely
     for (const field of requiredFields) {
         if (!formValues[field]) {
             isValid = false;
@@ -224,18 +226,13 @@ function validateForm(formValues) {
         }
     }
     
-    // Check if at least one connect method is selected
-    const connectMethods = document.querySelectorAll('input[name="connect-method"]:checked');
-    if (connectMethods.length === 0) {
-        isValid = false;
-        alert('Please select at least one preferred connection method.');
-    }
-    
     return isValid;
 }
 
 function highlightInvalidField(fieldId) {
     const field = document.getElementById(fieldId);
+    if (!field) return; // Safety check in case the element ID doesn't exist
+    
     field.classList.add('invalid');
     
     // Add invalid field style
@@ -253,9 +250,10 @@ function highlightInvalidField(fieldId) {
     });
 }
 
-// Initialize the calculator with default values on page load
+// Initialize components safely on page load
 document.addEventListener('DOMContentLoaded', () => {
-    if (calculateButton) {
+    // FIXED: Only run the calculator if the elements actually exist on the page
+    if (calculateButton && costPerLeadInput) {
         calculateROI();
     }
     
@@ -274,9 +272,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 
                 // Close mobile menu if open
-                if (navLinks.classList.contains('active')) {
+                if (navLinks && navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
-                    hamburger.classList.remove('active');
+                    if (hamburger) hamburger.classList.remove('active');
                 }
             }
         });
