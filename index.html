@@ -213,13 +213,49 @@ const taidData = {
             plan: "Screen inbound inquiries with an AI intake form that filters cases based on your specific practice areas, budget requirements, and timeline.",
             prompt: "Act as an expert intake coordinator. Politely ask the prospect to summarize their core request, timeframe, and whether they have worked with a professional on this issue before."
         },
-        noshow: {
-            plan: "Require pre-consultation intake documents to be filled out via a conversational AI assistant, ensuring only deeply committed clients make it onto your calendar.",
+                           noshow: { plan: "Require pre-consultation intake documents to be filled out via a conversational AI assistant, ensuring only deeply committed clients make it onto your calendar.", prompt: "Act as a helpful administrative assistant. Guide the user through providing their required case files or business details before scheduling their official 1-on-1 dashboard link review." },
+                    marketing: { plan: "Set up target content qualification paths to ensure digital ad traffic lands on helpful, localized expert solutions built around individual client constraints.", prompt: "Provide a direct copy response focusing on your absolute transparency and record of high client satisfaction in high-stake situations." },
+                    afterhours: { plan: "Run an overnight chatbot that safely records personal data and books legal or consulting discovery blocks directly onto your secondary calendar slots.", prompt: "Acknowledge the user's inquiry professionally, assure them their records are protected safely, and direct them to choose a consultation time from the calendar widget." },
+                    admin: { plan: "Implement an automated note assembly system that logs user communications straight into standard internal workflows or billing logs.", prompt: "Organize the following raw consultation transcript into actionable tasks, critical dates, and standard contact summaries." }
+                },
+                hvac: {
+                    chasing: { plan: "Deploy an instant SMS text-back system to engage emergency repair requests in under 60 seconds, preventing them from calling other contractors.", prompt: "Act as an emergency dispatcher. Ask if their heating or cooling is out, confirm their zip code, and state that a technician can handle their issue." },
+                    noshow: { plan: "Send automated dispatch reminders showing the technician's ETA profile link via SMS, increasing show rates and customer satisfaction levels.", prompt: "Write a high-converting text template reminding the client of their service window, asking them to keep pets secured before the technician pulls up." },
+                    marketing: { plan: "Offer a simple seasonal maintenance checklist quiz that highlights potential system failures before they become expensive breakdowns.", prompt: "Draft a system health checklist targeting homeowners preparing for harsh weather transitions. Emphasize energy efficiency improvements." },
+                    afterhours: { plan: "Deploy an overnight automated routing assistant that books urgent repair slots dynamically based on your on-call technician schedule.", prompt: "You are an automated support bot. Confirm their heating emergency details, check open slots, and assign a priority maintenance block for the next morning." },
+                    admin: { plan: "Use automated transcription tools to log parts orders and job resolutions directly into field service software from a simple voice memo.", prompt: "Convert this voice note into a job invoice format: 'Replaced dual run capacitor, cleaned condenser coils, unit drawing normal amps, system verified working.'" }
+                },
+                other: {
+                    chasing: { plan: "Create an AI-driven chat layout that captures user requirements, company size, and budget before passing qualified deals to account managers.", prompt: "Act as a qualification specialist. Gather basic business constraints, timeline parameters, and confirm who holds final purchasing authority." },
+                    noshow: { plan: "Implement conversational milestones that check client alignment via email updates, confirming value checkpoints prior to strategic alignment calls.", prompt: "Draft a professional follow-up template asking the prospect to confirm they reviewed the alignment outline ahead of our scheduled strategy call." },
+                    marketing: { plan: "Build interactive calculator workflows that demonstrate operational improvements to convert traffic into inbound inquiries.", prompt: "Write a compelling promotional campaign framework targeting operations heads. Focus heavily on bottom-line cost reduction metrics." },
+                    afterhours: { plan: "Use an intelligent form responder that provides specialized case materials or whitepapers immediately based on what users ask for at night.", prompt: "Deliver a professional automated response delivering the requested technical specifications while providing a direct link to arrange a discovery call." },
+                    admin: { plan: "Set up integrated pipeline flows that extract text from client updates and structure them cleanly inside standard reporting schemas.", prompt: "Parse this client message pipeline text block and break it out into immediate milestones, ownership tags, and follow-up follow-through alerts." }
+                }
+            };
 
+            function generateAiPlan() {
+                const industry = document.getElementById("taid-industry").value;
+                const bottleneck = document.getElementById("taid-bottleneck").value;
+                const data = taidData[industry] && taidData[industry][bottleneck] ? taidData[industry][bottleneck] : taidData["roofing"]["chasing"];
+                document.getElementById("taid-action-plan").innerText = data.plan;
+                document.getElementById("taid-prompt-text").value = data.prompt;
+            }
 
-            
+            function copyTaidPrompt() {
+                const copyText = document.getElementById("taid-prompt-text");
+                copyText.select();
+                copyText.setSelectionRange(0, 99999);
+                navigator.clipboard.writeText(copyText.value);
+                const toast = document.getElementById("copy-toast");
+                toast.style.display = "block";
+                setTimeout(() => { toast.style.display = "none"; }, 2500);
+            }
+            window.onload = function() { generateAiPlan(); };
+            </script>
         </div>
     </section>
+
 
     <section id="calculator" class="calculator">
         <div class="container">
